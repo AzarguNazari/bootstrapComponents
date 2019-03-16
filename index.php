@@ -13,10 +13,16 @@
     <body>
         <h3 class="text-center my-4 display-2">Bootstrap Components</h3>
         <div class="container-fluid">
+            <div class="row container my-2">
+                <div class="">
+                    <input type="search" id="search" class="search" placeholder="Searach">
+                    <button class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sort Ascending Order"><i class="fa fa-sort-alpha-asc" onclick="sortTab()"></i></button>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-3 m-1 rounded bg-dark py-2" style="min-height: 800px;">
+                <div class="col-3 mx-3 rounded py-2" style="min-height: 800px; background-color: #eee;">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#layout" role="tab" aria-controls="v-pills-home" aria-selected="true">Layout <span class="pill"></span></a>
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#layout" role="tab" aria-controls="v-pills-home" aria-selected="true">Layout</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#grid" role="tab" aria-controls="v-pills-profile" aria-selected="false">Grid</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#content" role="tab" aria-controls="v-pills-profile" aria-selected="false">Content</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#image" role="tab" aria-controls="v-pills-profile" aria-selected="false">Image</a>
@@ -43,7 +49,7 @@
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#tooltips" role="tab" aria-controls="v-pills-profile" aria-selected="false">Tooltips</a>
                     </div>
                 </div>
-                <div class="col bg-dark m-1 rounded text-light">
+                <div class="col m-1 rounded text-light mr-2" style="background-color: orange">
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active py-2" id="layout" role="tabpanel" aria-labelledby="v-pills-home-tab"></div>
                         <div class="tab-pane fade py-2" id="grid" role="tabpanel" aria-labelledby="v-pills-profile-tab"></div>
@@ -77,21 +83,21 @@
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title text-danger" id="exampleModalLabel">Error</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                  <p>
-                      There's some problem in loading content
-                  </p>
-              </div>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-danger" id="exampleModalLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            There's some problem in loading content
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <!-- Core -->
@@ -100,23 +106,54 @@
         <script src="assets/bootstrap4x/js/bootstrap.min.js"></script>
 
         <script>
-            
-            $(document).ready(function(){
-                
-                
-                $.each($("#v-pills-tabContent > div"),function(){
-                    $(this).load("assets/components/" + $(this).attr("id") + ".html", function(response, status, xhr){
+
+            $(document).ready(function () {
+
+
+                $.each($("#v-pills-tabContent > div"), function () {
+                    $(this).load("assets/components/" + $(this).attr("id") + ".html", function (response, status, xhr) {
                         if (status == "error") {
                             //$("#exampleModal").modal('show');
                         }
                     });
                 });
-                
-                
+
+                $(".nav-link").append(function () {
+                    return "<span class='badge badge-dark'><i class='fa fa-arrow-right'></i></span>";
+                });
+
+                $("#search").keyup(function () {
+                    const keyword = $(this).val().toLowerCase().trim();
+                    $("#v-pills-tab a").hide();
+                    $("#v-pills-tab a").filter(function () {
+                        return $(this).text().trim().toLowerCase().indexOf(keyword) >= 0;
+                    }).show();
+                });
             });
-            
+
+
+
+            function sortTab() {
+                const allElements = [];
+                $.each($("#v-pills-tab a"), function(){
+                    allElements.push($(this));
+                });
+                allElements.sort(function(a,b){
+                    const x = a.text();
+                    const y = b.text();
+                    return -((x > y) ? -1 : ((x < y) ? 1 : 0));
+                });
+                
+                $("#v-pills-tab a").remove();
+                 
+                $.each(allElements, function(){
+                    $("#v-pills-tab").append($(this).removeClass("active"));
+                });
+                
+                $("#v-pills-tab a").first().addClass("active");
+            }
         </script>
-        
-        
+
+
     </body>
 </html>

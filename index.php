@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Bootstrap Generator</title>
+        <title>Bootstrap Components</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- Theme CSS -->
         <link type="text/css" href="assets/bootstrap4x/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+        <link rel="stylesheet" href="assets/bootstrap4x/css/main.css">
     </head>
-    <body class="bg-light">
+    <body>
+        <h3 class="text-center my-4 display-2">Bootstrap Components</h3>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3 m-1 rounded bg-dark py-2" style="min-height: 800px;">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#layout" role="tab" aria-controls="v-pills-home" aria-selected="true">Layout</a>
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#layout" role="tab" aria-controls="v-pills-home" aria-selected="true">Layout <span class="pill"></span></a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#grid" role="tab" aria-controls="v-pills-profile" aria-selected="false">Grid</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#content" role="tab" aria-controls="v-pills-profile" aria-selected="false">Content</a>
                         <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#image" role="tab" aria-controls="v-pills-profile" aria-selected="false">Image</a>
